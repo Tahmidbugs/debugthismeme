@@ -11,7 +11,7 @@ import {
   TextInput,
 } from "react-native";
 import * as Yup from "yup";
-
+import { validate } from "email-validator";
 import { AntDesign } from "@expo/vector-icons";
 const Registration = ({}) => {
   return (
@@ -110,7 +110,7 @@ const Forms = ({ navigation }) => {
     password: Yup.string().min(4).label("Password"),
   });
 
-  const handleSignUp = async (email, password, username) => {
+  const handleSignUp = async (email, password) => {
     try {
       const authUser = await firebase
         .auth()
@@ -119,11 +119,6 @@ const Forms = ({ navigation }) => {
       db.collection("users").doc(authUser.user.email).set({
         email: email,
         owner_uid: authUser.user.uid,
-        username: username,
-        followers: 0,
-        following: 0,
-        profile_picture:
-          "https://storage.googleapis.com/ares-profile-pictures/hd/no__strings-143f671b112b152e6b012e1acf45a1b7_hd.jpg",
       });
       console.log("database added");
     } catch (error) {
@@ -132,21 +127,12 @@ const Forms = ({ navigation }) => {
   };
   return (
     <Formik
-      initialValues={{ email: "", password: "", username: "" }}
+      initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
-      onSubmit={(values) =>
-        handleSignUp(values.email, values.password, values.username)
-      }
+      onSubmit={(values) => handleSignUp(values.email, values.password)}
       validateOnMount={true}
     >
-      {({
-        handleChange,
-        handleSubmit,
-        values,
-        errors,
-        isValid,
-        handleBlur,
-      }) => (
+      {({ handleChange, handleSubmit, values, isValid, handleBlur }) => (
         <View style={{ width: "100%" }}>
           <TextInput
             name="email"
@@ -163,26 +149,6 @@ const Forms = ({ navigation }) => {
               {
                 borderColor:
                   values.email.length < 1 || validate(values.email)
-                    ? null
-                    : "red",
-              },
-            ]}
-          />
-          <TextInput
-            name="username"
-            placeholder="Username"
-            placeholderTextColor="black"
-            onChangeText={handleChange("username")}
-            onBlur={handleBlur("username")}
-            value={values.username}
-            returnKeyType="next"
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={[
-              styles.inputField,
-              {
-                borderColor:
-                  values.username.length > 4 || values.username.length < 1
                     ? null
                     : "red",
               },
@@ -241,7 +207,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: isValid ? "#0095F6" : "#AA8FE0",
+    backgroundColor: isValid ? "#64587C" : "#AA8FE0",
     marginTop: 30,
     height: 35,
     borderRadius: 8,
