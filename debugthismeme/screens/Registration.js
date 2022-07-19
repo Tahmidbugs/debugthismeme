@@ -16,19 +16,68 @@ import { AntDesign } from "@expo/vector-icons";
 const Registration = ({}) => {
   return (
     <View style={styles.container}>
-      <View>
-        <Image
-          source={require("../assets/logo.png")}
-          style={{ width: 320, height: 90, alignSelf: "center" }}
-        />
-        <Forms />
-        <TouchableOpacity style={{ marginBottom: 10 }}>
-          <Text style={{ color: "black", alignSelf: "center", marginTop: 50 }}>
-            Already have an account?{" "}
-            <Text style={{ color: "#0095F6", fontWeight: "800" }}>Log in!</Text>
+      <Image
+        source={require("../assets/logo.png")}
+        style={{ width: 320, height: 90, alignSelf: "center", marginTop: 60 }}
+      />
+      <View
+        style={{
+          backgroundColor: "#CEBEEC",
+          flex: 1,
+          marginTop: 20,
+          borderTopEndRadius: 100,
+          borderTopStartRadius: 100,
+        }}
+      >
+        <View style={{ marginTop: 50 }}>
+          <Text
+            style={{
+              color: "#64587C",
+              fontSize: 25,
+              fontWeight: "800",
+              alignSelf: "center",
+              marginBottom: 40,
+            }}
+          >
+            Create your account
           </Text>
-        </TouchableOpacity>
-        <FacebookandGoogle />
+          <Forms />
+          <Text
+            style={{
+              color: "grey",
+              alignSelf: "center",
+              margin: 9,
+              fontSize: 12,
+              marginTop: 20,
+            }}
+          >
+            By creating your account you agree with our{" "}
+            <Text style={{ color: "#64587C", fontWeight: "700" }}>
+              Terms & Conditions
+            </Text>{" "}
+            and{" "}
+            <Text
+              style={{
+                color: "#64587C",
+                fontWeight: "700",
+                alignSelf: "center",
+              }}
+            >
+              Privacy Policy
+            </Text>
+          </Text>
+          <TouchableOpacity style={{ marginBottom: 10 }}>
+            <Text
+              style={{ color: "#64587C", alignSelf: "center", marginTop: 50 }}
+            >
+              Already have an account?{" "}
+              <Text style={{ color: "#64587C", fontWeight: "800" }}>
+                Log in!
+              </Text>
+            </Text>
+          </TouchableOpacity>
+          <FacebookandGoogle />
+        </View>
       </View>
     </View>
   );
@@ -63,7 +112,7 @@ const FacebookandGoogle = () => {
                 color: "white",
               }}
             >
-              Sign in with Facebook
+              Sign up with Facebook
             </Text>
           </View>
         </TouchableOpacity>
@@ -94,7 +143,7 @@ const FacebookandGoogle = () => {
                 color: "white",
               }}
             >
-              Sign in with Google
+              Sign up with Google
             </Text>
           </TouchableOpacity>
         </View>

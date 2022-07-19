@@ -52,7 +52,8 @@ const MakeProfile = ({ navigation }) => {
           fontSize: 30,
           marginTop: 100,
           fontWeight: "bold",
-          marginLeft: 20,
+
+          alignSelf: "center",
         }}
       >
         Let's get you started!
@@ -119,7 +120,7 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 flexDirection: "row",
                 alignItems: "center",
                 marginBottom: 20,
-                borderColor: "#222525",
+                borderColor: "#988AB3",
                 borderTopWidth: 1,
                 borderBottomWidth: 1,
                 height: 60,
@@ -128,7 +129,7 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
               <Text
                 style={{
                   color: "#64587C",
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: "600",
                   marginRight: 40,
                   marginLeft: 10,
@@ -143,8 +144,8 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 autoCapitalize="none"
                 placeholderTextColor={"#9D89BF"}
                 style={{
-                  color: "white",
-                  fontSize: 20,
+                  color: "black",
+                  fontSize: 16,
                 }}
                 onChangeText={handleChange("username")}
                 onBlur={handleBlur("username")}
@@ -162,9 +163,9 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
               <Text
                 style={{
                   color: "#64587C",
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: "600",
-                  marginRight: 90,
+                  marginRight: 83,
                   marginLeft: 10,
                 }}
               >
@@ -177,8 +178,8 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 autoCapitalize="none"
                 placeholderTextColor={"#9D89BF"}
                 style={{
-                  color: "white",
-                  fontSize: 20,
+                  color: "black",
+                  fontSize: 16,
                 }}
                 onChangeText={handleChange("bio")}
                 onBlur={handleBlur("bio")}
@@ -189,16 +190,24 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
 
           <TouchableOpacity
             onPress={handleSubmit}
-            style={{ alignItems: "center" }}
+            style={{
+              alignSelf: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 160,
+              height: 40,
+              borderRadius: 12,
+              backgroundColor: "#907DA9",
+            }}
           >
             <Text
               style={{
-                color: "#64587C",
+                color: "#564D61",
                 fontSize: 17,
                 fontWeight: "600",
               }}
             >
-              save and continue
+              Save and continue
             </Text>
           </TouchableOpacity>
         </>
@@ -478,8 +487,8 @@ const SetProfilePic = ({ thumbnail, onChangeProfile }) => (
         height: 100,
         width: 100,
         borderRadius: 50,
-        borderColor: "black",
-        borderWidth: 3,
+        borderColor: "#64587C",
+        borderWidth: 5,
       }}
     />
     <TouchableOpacity onPress={onChangeProfile}>
