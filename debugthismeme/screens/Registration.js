@@ -13,7 +13,8 @@ import {
 import * as Yup from "yup";
 import { validate } from "email-validator";
 import { AntDesign } from "@expo/vector-icons";
-const Registration = ({}) => {
+
+const Registration = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -41,7 +42,7 @@ const Registration = ({}) => {
           >
             Create your account
           </Text>
-          <Forms />
+          <Forms navigation={navigation} />
           <Text
             style={{
               color: "grey",
@@ -155,12 +156,13 @@ const FacebookandGoogle = () => {
 const Forms = ({ navigation }) => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().label("Email"),
-    username: Yup.string().required().min(4),
+
     password: Yup.string().min(4).label("Password"),
   });
 
   const handleSignUp = async (email, password) => {
     try {
+      console.log("submit called");
       const authUser = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
@@ -169,6 +171,7 @@ const Forms = ({ navigation }) => {
         email: email,
         owner_uid: authUser.user.uid,
       });
+
       console.log("database added");
     } catch (error) {
       alert(error);
