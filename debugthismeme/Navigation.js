@@ -17,7 +17,11 @@ const screenOptions = {
 export const SignedInStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={screenOptions} initialRouteName="Home">
+      <Stack.Navigator
+        screenOptions={screenOptions}
+        initialRouteName="AccountSetUp"
+      >
+        <Stack.Screen name="AccountSetUp" component={AccountSetUp} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="CreatePost" component={CreatePost} />
         <Stack.Screen name="CreateMeme" component={CreateMeme} />
@@ -35,7 +39,7 @@ export const SignedOutStack = () => {
         initialRouteName="Registration"
       >
         <Stack.Screen name="Registration" component={Registration} />
-        <Stack.Screen name="AccountSetUp" component={AccountSetUp} />
+
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>

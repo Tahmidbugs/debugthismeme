@@ -67,7 +67,10 @@ const Registration = ({ navigation }) => {
               Privacy Policy
             </Text>
           </Text>
-          <TouchableOpacity style={{ marginBottom: 10 }}>
+          <TouchableOpacity
+            style={{ marginBottom: 10 }}
+            onPress={() => navigation.navigate("LoginScreen")}
+          >
             <Text
               style={{ color: "#64587C", alignSelf: "center", marginTop: 50 }}
             >
@@ -167,14 +170,21 @@ const Forms = ({ navigation }) => {
         .auth()
         .createUserWithEmailAndPassword(email, password);
       const db = firebase.firestore();
-      db.collection("users").doc(authUser.user.email).set({
-        email: email,
-        owner_uid: authUser.user.uid,
-      });
-
-      console.log("database added");
+      db.collection("users")
+        .doc(authUser.user.email)
+        .set({
+          email: email,
+          owner_uid: authUser.user.uid,
+        })
+        .then(() => {
+          console.log("database added");
+          navigation.navigate("AccountSetUp");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
   return (

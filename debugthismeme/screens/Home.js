@@ -9,11 +9,12 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   ScrollView,
+  Alert,
 } from "react-native";
 import firebase from "../firebase";
 import {
   MaterialIcons,
-  FontAwesome,
+  Entypo,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -91,9 +92,9 @@ const Post = ({ post }) => {
         marginBottom: "2%",
         marginHorizontal: "2%",
         borderWidth: 1,
-        borderColor: "#F86E14",
+        borderColor: "#E79039",
         borderRadius: 10,
-        backgroundColor: "#231201",
+        backgroundColor: "#130A01",
         padding: "5%",
       }}
     >
@@ -105,7 +106,7 @@ const Post = ({ post }) => {
             height: 50,
             borderRadius: 25,
             borderWidth: 2,
-            borderColor: "#F86E14",
+            borderColor: "#E79039",
           }}
         />
 
@@ -207,27 +208,52 @@ const Post = ({ post }) => {
 };
 
 const Header = () => {
+  const signOut = async () => {
+    Alert.alert(
+      "Sign Out",
+      "Are you sure you want to sign out?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "OK", onPress: () => firebase.auth().signOut() },
+      ],
+      { cancelable: false }
+    );
+  };
+
   return (
     <>
       <View
-        style={{ height: 45, backgroundColor: "black", width: "100%" }}
-      ></View>
-      <View
         style={{
-          width: 300,
-          height: 100,
-          backgroundColor: "#231201",
+          height: 45,
+          backgroundColor: "black",
+          width: "100%",
+          flexDirection: "row",
           alignItems: "center",
-          alignSelf: "center",
-          justifyContent: "center",
-          borderBottomLeftRadius: 40,
-          borderBottomRightRadius: 40,
+          justifyContent: "space-around",
+          marginTop: "15%",
         }}
       >
-        <Image
-          source={require("../assets/logo3.png")}
-          style={{ width: 250, height: 100, marginTop: 2 }}
-        />
+        <Text> </Text>
+        <View
+          style={{
+            width: 300,
+            height: 100,
+            backgroundColor: "#130A01",
+            alignItems: "center",
+            alignSelf: "center",
+            justifyContent: "center",
+            borderBottomLeftRadius: 40,
+            borderBottomRightRadius: 40,
+          }}
+        >
+          <Image
+            source={require("../assets/logo3.png")}
+            style={{ width: 250, height: 100, marginTop: 2 }}
+          />
+        </View>
+        <TouchableOpacity onPress={signOut}>
+          <Entypo name="log-out" size={24} color="#E79039" />
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -258,9 +284,9 @@ const BottomTab = () => {
         justifyContent: "space-around",
       }}
     >
-      <Ionicons name="search-circle" size={40} color="#F9883E" />
-      <MaterialCommunityIcons name="home-circle" size={60} color="#F9883E" />
-      <MaterialIcons name="account-circle" size={35} color="#F9883E" />
+      <Ionicons name="search-circle" size={40} color="#E79039" />
+      <MaterialCommunityIcons name="home-circle" size={60} color="#E79039" />
+      <MaterialIcons name="account-circle" size={35} color="#E79039" />
     </View>
   );
 };
@@ -303,7 +329,7 @@ const UploadPost = ({ navigation, currentLoggedInUser }) => {
                 marginTop: 2,
                 borderRadius: 25,
                 borderWidth: 2,
-                borderColor: "#F9883E",
+                borderColor: "#E79039",
               }}
             />
           </>
@@ -313,7 +339,7 @@ const UploadPost = ({ navigation, currentLoggedInUser }) => {
           style={{
             height: 50,
             width: 310,
-            borderColor: "#F9883E",
+            borderColor: "#E79039",
             borderWidth: 1,
             borderStyle: "dotted",
             borderRadius: 25,
@@ -327,7 +353,7 @@ const UploadPost = ({ navigation, currentLoggedInUser }) => {
           <Text
             style={{
               fontSize: 16,
-              color: "#F9883E",
+              color: "#E79039",
               textAlignVertical: "center",
               fontWeight: "200",
             }}
@@ -339,7 +365,7 @@ const UploadPost = ({ navigation, currentLoggedInUser }) => {
 
       <View
         style={{
-          backgroundColor: "#F9883E",
+          backgroundColor: "#E79039",
           height: 1,
           width: "100%",
           marginTop: 30,

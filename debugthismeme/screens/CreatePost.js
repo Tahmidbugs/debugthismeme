@@ -61,7 +61,7 @@ const Header = ({ navigation }) => {
         <AntDesign
           name="left"
           size={21}
-          color="#F9883E"
+          color="#E79039"
           style={{ marginLeft: 10 }}
         />
       </TouchableOpacity>
@@ -225,7 +225,7 @@ const AppForm = ({ navigation, template }) => {
                   borderWidth: 1,
                   borderStyle: "dashed",
                   borderRadius: 15,
-                  borderColor: "#F9883E",
+                  borderColor: "#E79039",
                 }}
               >
                 <TextInput
@@ -233,9 +233,9 @@ const AppForm = ({ navigation, template }) => {
                   placeholder="Add a post caption"
                   autoCorrect={false}
                   autoCapitalize="none"
-                  placeholderTextColor={"#F9883E"}
+                  placeholderTextColor={"#E79039"}
                   style={{
-                    color: "#F9883E",
+                    color: "#E79039",
                     fontSize: 18,
                     marginVertical: 30,
                     marginHorizontal: 10,
@@ -291,7 +291,7 @@ const AppForm = ({ navigation, template }) => {
                       }}
                       style={{ position: "absolute", top: -15, left: 20 }}
                     >
-                      <Ionicons name="close-circle" size={30} color="#F9883E" />
+                      <Ionicons name="close-circle" size={30} color="#E79039" />
                     </TouchableOpacity>
                   </View>
                 )}
@@ -307,10 +307,10 @@ const AppForm = ({ navigation, template }) => {
             >
               <TouchableOpacity onPress={selectImage}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <FontAwesome name="photo" size={24} color="#F9883E" />
+                  <FontAwesome name="photo" size={24} color="#E79039" />
                   <Text
                     style={{
-                      color: "#F9883E",
+                      color: "#E79039",
                       marginLeft: 10,
                       fontWeight: "700",
                     }}
@@ -323,10 +323,10 @@ const AppForm = ({ navigation, template }) => {
                 onPress={() => navigation.navigate("CreateMeme")}
               >
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <MaterialIcons name="create" size={24} color="#F9883E" />
+                  <MaterialIcons name="create" size={24} color="#E79039" />
                   <Text
                     style={{
-                      color: "#F9883E",
+                      color: "#E79039",
                       marginLeft: 10,
                       fontWeight: "700",
                     }}
@@ -359,10 +359,10 @@ const Tags = ({ selectedTags, setSelectedTags }) => {
   return (
     <>
       <View style={{ flexDirection: "row", flexWrap: "wrap", margin: 30 }}>
-        <FontAwesome name="tags" size={24} color="#F9883E" />
+        <FontAwesome name="tags" size={24} color="#E79039" />
         <Text
           style={{
-            color: "#F9883E",
+            color: "#E79039",
             fontWeight: "800",
             marginLeft: 10,
             marginTop: 5,
@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   headerText: {
-    color: "#F9883E",
+    color: "#E79039",
     fontWeight: "700",
     fontSize: 20,
     marginRight: 27.5,
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: "#F9883E",
+    backgroundColor: "#E79039",
     marginTop: 60,
     height: 40,
     borderRadius: 8,
