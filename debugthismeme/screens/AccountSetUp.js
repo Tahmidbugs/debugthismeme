@@ -36,7 +36,7 @@ const eightUri = Image.resolveAssetSource(eight).uri;
 import nine from "../assets/9.png";
 const nineUri = Image.resolveAssetSource(nine).uri;
 
-const MakeProfile = ({ navigation }) => {
+const AccountSetUp = ({ navigation }) => {
   const [thumbnail, setThumbnail] = React.useState(oneUri);
   const [pickAvatar, setPickAvatar] = React.useState(false);
 
@@ -45,10 +45,10 @@ const MakeProfile = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#DBD1EE" }}>
+    <View style={{ flex: 1, backgroundColor: "#E79039" }}>
       <Text
         style={{
-          color: "#64587C",
+          color: "black",
           fontSize: 30,
           marginTop: 100,
           fontWeight: "bold",
@@ -60,7 +60,7 @@ const MakeProfile = ({ navigation }) => {
       </Text>
       <View
         style={{
-          backgroundColor: "#CEBEEC",
+          backgroundColor: "black",
           flex: 1,
           marginTop: 60,
           borderTopEndRadius: 100,
@@ -120,7 +120,7 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 flexDirection: "row",
                 alignItems: "center",
                 marginBottom: 20,
-                borderColor: "#988AB3",
+                borderColor: "#E79039",
                 borderTopWidth: 1,
                 borderBottomWidth: 1,
                 height: 60,
@@ -128,7 +128,7 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
             >
               <Text
                 style={{
-                  color: "#64587C",
+                  color: "#E79039",
                   fontSize: 16,
                   fontWeight: "600",
                   marginRight: 40,
@@ -142,10 +142,11 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 placeholder="Pick a username"
                 autoCorrect={false}
                 autoCapitalize="none"
-                placeholderTextColor={"#9D89BF"}
+                placeholderTextColor={"#80572A"}
                 style={{
-                  color: "black",
+                  color: "#E79039",
                   fontSize: 16,
+                  //   backgroundColor: "#2B1701",
                 }}
                 onChangeText={handleChange("username")}
                 onBlur={handleBlur("username")}
@@ -162,7 +163,7 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
             >
               <Text
                 style={{
-                  color: "#64587C",
+                  color: "#E79039",
                   fontSize: 16,
                   fontWeight: "600",
                   marginRight: 83,
@@ -176,9 +177,10 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
                 placeholder="Enter a bio of your choice"
                 autoCorrect={false}
                 autoCapitalize="none"
-                placeholderTextColor={"#9D89BF"}
+                placeholderTextColor={"#80572A"}
                 style={{
-                  color: "black",
+                  color: "#E79039",
+                  //   backgroundColor: "#2B1701",
                   fontSize: 16,
                 }}
                 onChangeText={handleChange("bio")}
@@ -197,12 +199,12 @@ const SetUserCredentials = ({ thumbnail, navigation }) => (
               width: 160,
               height: 40,
               borderRadius: 12,
-              backgroundColor: "#907DA9",
+              backgroundColor: "#E79039",
             }}
           >
             <Text
               style={{
-                color: "#564D61",
+                color: "black",
                 fontSize: 17,
                 fontWeight: "600",
               }}
@@ -261,7 +263,7 @@ const ModalContent = ({ setThumbnail, setPickAvatar }) => {
   return (
     <View
       style={{
-        backgroundColor: "#DBD1EE",
+        backgroundColor: "#AB610E",
         flex: 1,
         marginTop: 80,
         flexDirection: "row",
@@ -272,7 +274,7 @@ const ModalContent = ({ setThumbnail, setPickAvatar }) => {
         <AntDesign
           name="closecircle"
           size={30}
-          color="black"
+          color="#E79039"
           style={{ position: "absolute", left: 180, top: -20 }}
         />
       </TouchableOpacity>
@@ -487,14 +489,14 @@ const SetProfilePic = ({ thumbnail, onChangeProfile }) => (
         height: 100,
         width: 100,
         borderRadius: 50,
-        borderColor: "#64587C",
+        borderColor: "#E79039",
         borderWidth: 5,
       }}
     />
     <TouchableOpacity onPress={onChangeProfile}>
       <Text
         style={{
-          color: "#64587C",
+          color: "#E79039",
           marginTop: 30,
           fontSize: 18,
           fontWeight: "700",
@@ -528,4 +530,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MakeProfile;
+export default AccountSetUp;

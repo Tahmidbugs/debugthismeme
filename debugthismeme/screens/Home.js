@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   TextInput,
+  Animated,
   ScrollView,
   Alert,
 } from "react-native";
@@ -16,6 +17,7 @@ import {
   MaterialIcons,
   Entypo,
   Ionicons,
+  FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 const Home = ({ navigation }) => {
@@ -37,7 +39,9 @@ const Home = ({ navigation }) => {
         console.log("Error getting document:", error);
       });
   };
-
+  let arr = new Array(tagList.length);
+  arr.fill(false, 0, tagList.length);
+  const [selectedTags, setSelectedTags] = React.useState(arr);
   const [posts, setPosts] = React.useState([]);
 
   const getPosts = async () => {
@@ -62,7 +66,7 @@ const Home = ({ navigation }) => {
   React.useEffect(() => {
     getUserCredentials();
     getPosts();
-  }, []);
+  }, [selectedTags]);
 
   return (
     <View style={styles.container}>
@@ -72,18 +76,79 @@ const Home = ({ navigation }) => {
         currentLoggedInUser={currentLoggedInUser}
       />
       <ScrollView style={{ maxHeight: "100%" }}>
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+        <Filters
+          selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
+        />
+        {posts
+          .filter((post) => {
+            // console.log(post.tags);
+            if (JSON.stringify(selectedTags) == JSON.stringify(arr)) {
+              return post;
+            }
+
+            if (JSON.stringify(selectedTags) == JSON.stringify(post.tags)) {
+              return post;
+            }
+          })
+          .map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
       </ScrollView>
-      <BottomTab />
+      <BottomTab navigation={navigation} />
     </View>
   );
 };
+
+const Filters = ({ selectedTags, setSelectedTags }) => {
+  return (
+    <>
+      <View
+        style={{ flexDirection: "row", flexWrap: "wrap", marginVertical: 15 }}
+      >
+        {tagList.map((tag, index) => (
+          <TouchableOpacity
+            style={styles.tag(selectedTags, index)}
+            key={index}
+            onPress={() => {
+              setSelectedTags((selectedTags) => {
+                return [
+                  ...selectedTags.slice(0, index),
+                  !selectedTags[index],
+                  ...selectedTags.slice(index + 1),
+                ];
+              });
+            }}
+          >
+            <Text style={styles.tagText(selectedTags, index)}>{tag}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </>
+  );
+};
+const tagList = ["Python", "C++", "Javascript", "Java", "C#", "PHP"];
+
 const Post = ({ post }) => {
   const [neutral, setNeutral] = React.useState(false);
   const [lol, setLol] = React.useState(false);
   const [rofl, setRofl] = React.useState(false);
+
+  const opacity = React.useState(new Animated.Value(0))[0];
+  const fadeIn = () => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+  const fadeOut = () => {
+    Animated.timing(opacity, {
+      toValue: 0,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
 
   return (
     <View
@@ -236,8 +301,8 @@ const Header = () => {
         <Text> </Text>
         <View
           style={{
-            width: 300,
-            height: 100,
+            width: 220,
+            height: 80,
             backgroundColor: "#130A01",
             alignItems: "center",
             alignSelf: "center",
@@ -247,8 +312,8 @@ const Header = () => {
           }}
         >
           <Image
-            source={require("../assets/logo3.png")}
-            style={{ width: 250, height: 100, marginTop: 2 }}
+            source={require("../assets/logo.png")}
+            style={{ width: 230, height: 80, marginTop: 2 }}
           />
         </View>
         <TouchableOpacity onPress={signOut}>
@@ -259,7 +324,7 @@ const Header = () => {
   );
 };
 
-const BottomTab = () => {
+const BottomTab = ({ navigation }) => {
   const [activeTab, setActiveTab] = React.useState("Home");
 
   const textoverPicture = () => {
@@ -284,7 +349,12 @@ const BottomTab = () => {
         justifyContent: "space-around",
       }}
     >
-      <Ionicons name="search-circle" size={40} color="#E79039" />
+      <Ionicons
+        name="search-circle"
+        size={40}
+        color="#E79039"
+        onPress={() => navigation.navigate("SearchScreen")}
+      />
       <MaterialCommunityIcons name="home-circle" size={60} color="#E79039" />
       <MaterialIcons name="account-circle" size={35} color="#E79039" />
     </View>
@@ -409,6 +479,22 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: activeTab === "Profile" ? 2 : 0,
     borderColor: "white",
+  }),
+  tag: (selectedTags, index) => ({
+    maxWidth: "100%",
+    maxHeight: "100%",
+    borderRadius: 10,
+    marginLeft: 14,
+    backgroundColor: selectedTags[index] ? "#F18035" : "#E79039",
+    borderColor: selectedTags[index] ? "black" : "#F18035",
+    borderWidth: 1,
+    alignItems: "center",
+    padding: 5,
+    marginTop: 2,
+  }),
+  tagText: (selectedTags, index) => ({
+    color: selectedTags[index] ? "white" : "black",
+    fontWeight: "700",
   }),
 });
 

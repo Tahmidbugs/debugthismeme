@@ -8,6 +8,7 @@ import AccountSetUp from "./screens/AccountSetUp";
 import CreatePost from "./screens/CreatePost";
 import CreateMeme from "./screens/CreateMeme";
 import EditTemplate from "./screens/EditTemplate";
+import SearchScreen from "./screens/SearchScreen";
 const Stack = createNativeStackNavigator();
 
 const screenOptions = {
@@ -26,6 +27,7 @@ export const SignedInStack = () => {
         <Stack.Screen name="CreatePost" component={CreatePost} />
         <Stack.Screen name="CreateMeme" component={CreateMeme} />
         <Stack.Screen name="EditTemplate" component={EditTemplate} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

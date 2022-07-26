@@ -16,13 +16,13 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/logo.png")}
-        style={{ width: 320, height: 90, alignSelf: "center", marginTop: 60 }}
+        source={require("../assets/logo3.png")}
+        style={{ width: 300, height: 120, alignSelf: "center", marginTop: 40 }}
       />
 
       <View
         style={{
-          backgroundColor: "#CEBEEC",
+          backgroundColor: "black",
           flex: 1,
           marginTop: 20,
           borderTopEndRadius: 100,
@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={{ marginTop: 50 }}>
           <Text
             style={{
-              color: "#64587C",
+              color: "#E79039",
               fontSize: 25,
               marginBottom: 40,
               fontWeight: "800",
@@ -45,14 +45,14 @@ const LoginScreen = ({ navigation }) => {
           <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
             <Text
               style={{
-                color: "#64587C",
+                color: "#E79039",
                 alignSelf: "center",
                 marginTop: 50,
                 fontWeight: "600",
               }}
             >
               New user?{" "}
-              <Text style={{ color: "#64587C", fontWeight: "800" }}>
+              <Text style={{ color: "#E79039", fontWeight: "800" }}>
                 Sign up!
               </Text>
             </Text>
@@ -97,19 +97,10 @@ const Forms = ({ navigation }) => {
         handleBlur,
       }) => (
         <View style={{ width: "100%" }}>
-          <Text
-            style={{
-              color: "#64587C",
-              fontWeight: "800",
-              marginLeft: 25,
-              marginBottom: -10,
-            }}
-          >
-            Username or email
-          </Text>
           <TextInput
             name="email"
-            placeholderTextColor="#9D89BF"
+            placeholderTextColor="#80572A"
+            placeholder="Email"
             onChangeText={handleChange("email")}
             autoCapitalize="none"
             keyboardType="email-address"
@@ -128,20 +119,10 @@ const Forms = ({ navigation }) => {
               },
             ]}
           />
-          <Text
-            style={{
-              color: "#64587C",
-              fontWeight: "800",
-              marginLeft: 25,
-              marginBottom: -10,
-              marginTop: 20,
-            }}
-          >
-            Password
-          </Text>
           <TextInput
             name="password"
-            placeholderTextColor="#9D89BF"
+            placeholder="Password"
+            placeholderTextColor="#80572A"
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
             returnKeyType="go"
@@ -166,7 +147,7 @@ const Forms = ({ navigation }) => {
           >
             <Text
               style={{
-                color: "#64587C",
+                color: "#E79039",
                 fontWeight: "600",
                 margin: 10,
                 fontSize: 12,
@@ -191,7 +172,7 @@ const Forms = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#DBD1EE",
+    backgroundColor: "#E79039",
     justifyContent: "center",
   },
   submitButton: (isValid) => ({
@@ -199,13 +180,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: isValid ? "#64587C" : "#AA8FE0",
+    backgroundColor: isValid ? "#E79039" : "#E79039",
     marginTop: 30,
     height: 40,
     borderRadius: 8,
   }),
   inputField: {
-    backgroundColor: "#64587C",
+    backgroundColor: "#2B1701",
     marginTop: 20,
     paddingVertical: 18,
     marginHorizontal: 20,

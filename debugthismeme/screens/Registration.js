@@ -18,12 +18,12 @@ const Registration = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/logo.png")}
-        style={{ width: 320, height: 90, alignSelf: "center", marginTop: 60 }}
+        source={require("../assets/logo3.png")}
+        style={{ width: 300, height: 130, alignSelf: "center", marginTop: 40 }}
       />
       <View
         style={{
-          backgroundColor: "#CEBEEC",
+          backgroundColor: "black",
           flex: 1,
           marginTop: 20,
           borderTopEndRadius: 100,
@@ -33,7 +33,7 @@ const Registration = ({ navigation }) => {
         <View style={{ marginTop: 50 }}>
           <Text
             style={{
-              color: "#64587C",
+              color: "#E79039",
               fontSize: 25,
               fontWeight: "800",
               alignSelf: "center",
@@ -53,13 +53,13 @@ const Registration = ({ navigation }) => {
             }}
           >
             By creating your account you agree with our{" "}
-            <Text style={{ color: "#64587C", fontWeight: "700" }}>
+            <Text style={{ color: "#5E350D", fontWeight: "700" }}>
               Terms & Conditions
             </Text>{" "}
             and{" "}
             <Text
               style={{
-                color: "#64587C",
+                color: "#5E350D",
                 fontWeight: "700",
                 alignSelf: "center",
               }}
@@ -72,10 +72,10 @@ const Registration = ({ navigation }) => {
             onPress={() => navigation.navigate("LoginScreen")}
           >
             <Text
-              style={{ color: "#64587C", alignSelf: "center", marginTop: 50 }}
+              style={{ color: "#E79039", alignSelf: "center", marginTop: 50 }}
             >
               Already have an account?{" "}
-              <Text style={{ color: "#64587C", fontWeight: "800" }}>
+              <Text style={{ color: "#E79039", fontWeight: "800" }}>
                 Log in!
               </Text>
             </Text>
@@ -199,7 +199,7 @@ const Forms = ({ navigation }) => {
           <TextInput
             name="email"
             placeholder="Email"
-            placeholderTextColor="black"
+            placeholderTextColor="#80572A"
             onChangeText={handleChange("email")}
             onBlur={handleBlur("email")}
             value={values.email}
@@ -219,7 +219,7 @@ const Forms = ({ navigation }) => {
           <TextInput
             name="password"
             placeholder="Password"
-            placeholderTextColor="black"
+            placeholderTextColor="#80572A"
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
             value={values.password}
@@ -241,7 +241,7 @@ const Forms = ({ navigation }) => {
             style={styles.submitButton(isValid)}
             onPress={handleSubmit}
           >
-            <Text style={{ color: "white", fontWeight: "700" }}>Sign up</Text>
+            <Text style={{ color: "black", fontWeight: "700" }}>Sign up</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -251,11 +251,11 @@ const Forms = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#DBD1EE",
+    backgroundColor: "#E79039",
     justifyContent: "center",
   },
   inputField: {
-    backgroundColor: "#64587C",
+    backgroundColor: "#2B1701",
     marginTop: 20,
     paddingVertical: 18,
     marginHorizontal: 20,
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: isValid ? "#64587C" : "#AA8FE0",
+    backgroundColor: isValid ? "#E79039" : "#E79039",
     marginTop: 30,
     height: 35,
     borderRadius: 8,
