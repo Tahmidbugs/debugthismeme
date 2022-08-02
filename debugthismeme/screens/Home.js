@@ -130,11 +130,6 @@ const Filters = ({ selectedTags, setSelectedTags }) => {
 const tagList = ["Python", "C++", "Javascript", "Java", "C#", "PHP"];
 
 const Post = ({ post }) => {
-  const [neutral, setNeutral] = React.useState(false);
-  const [lol, setLol] = React.useState(false);
-  const [rofl, setRofl] = React.useState(false);
-
-  const opacity = React.useState(new Animated.Value(0))[0];
   const fadeIn = () => {
     Animated.timing(opacity, {
       toValue: 1,
@@ -220,28 +215,221 @@ const Post = ({ post }) => {
           {post.bottomCaption}
         </Text>
       )}
+      <PostReaction post={post} />
+    </View>
+  );
+};
+const PostReaction = ({ post }) => {
+  const [neutral, setNeutral] = React.useState(false);
+  const [lol, setLol] = React.useState(false);
+  const [rofl, setRofl] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const [visible2, setVisible2] = React.useState(false);
+  const [visible3, setVisible3] = React.useState(false);
+  const currentValue = React.useState(new Animated.Value(0))[0];
+  const handleNeutral = () => {
+    setNeutral(!neutral);
+    if (!neutral) {
+      setVisible(true);
+    }
+    console.log(post);
+    if (!neutral) {
+      Animated.spring(currentValue, {
+        toValue: 1,
+        friction: 2,
+        useNativeDriver: true,
+      }).start(() => {
+        Animated.timing(currentValue, {
+          toValue: 0,
+          friction: 2,
+          useNativeDriver: true,
+        }).start(() => {
+          setVisible(false);
+        });
+      });
+    }
+    const db = firebase.firestore();
+    db.collection("users")
+      .doc(post.op_email)
+      .collection("posts")
+      .doc(post.id)
+      .update({
+        neutral: !neutral
+          ? firebase.firestore.FieldValue.arrayUnion(
+              firebase.auth().currentUser.email
+            )
+          : firebase.firestore.FieldValue.arrayRemove(
+              firebase.auth().currentUser.email
+            ),
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+  const handleLol = () => {
+    setLol(!lol);
+    if (!lol) {
+      setVisible2(true);
+    }
+    if (!lol) {
+      Animated.spring(currentValue, {
+        toValue: 1,
+        friction: 2,
+        useNativeDriver: true,
+      }).start(() => {
+        Animated.timing(currentValue, {
+          toValue: 0,
+          friction: 2,
+          useNativeDriver: true,
+        }).start(() => {
+          setVisible2(false);
+        });
+      });
+    }
+    const db = firebase.firestore();
+    db.collection("users")
+      .doc(post.op_email)
+      .collection("posts")
+      .doc(post.id)
+      .update({
+        lol: !lol
+          ? firebase.firestore.FieldValue.arrayUnion(
+              firebase.auth().currentUser.email
+            )
+          : firebase.firestore.FieldValue.arrayRemove(
+              firebase.auth().currentUser.email
+            ),
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+  const handleRofl = () => {
+    setRofl(!rofl);
+    if (!rofl) {
+      setVisible3(true);
+    }
+    if (!rofl) {
+      Animated.spring(currentValue, {
+        toValue: 1,
+        friction: 2,
+        useNativeDriver: true,
+      }).start(() => {
+        Animated.timing(currentValue, {
+          toValue: 0,
+          friction: 2,
+          useNativeDriver: true,
+        }).start(() => {
+          setVisible3(false);
+        });
+      });
+    }
+    const db = firebase.firestore();
+    db.collection("users")
+      .doc(post.op_email)
+      .collection("posts")
+      .doc(post.id)
+      .update({
+        rofl: !rofl
+          ? firebase.firestore.FieldValue.arrayUnion(
+              firebase.auth().currentUser.email
+            )
+          : firebase.firestore.FieldValue.arrayRemove(
+              firebase.auth().currentUser.email
+            ),
+      })
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
+      });
+  };
+
+  const AnimatedImage = Animated.createAnimatedComponent(Image);
+  return (
+    <View>
       <View
         style={{
           flexDirection: "row",
           marginTop: "2%",
           justifyContent: "space-around",
           marginTop: 30,
+          alignItems: "center",
         }}
       >
-        <TouchableOpacity onPress={() => setNeutral(!neutral)}>
-          {neutral ? (
-            <Image
+        <TouchableOpacity
+          onPress={handleNeutral}
+          style={{ flexDirection: "row", alignItems: "center" }}
+        >
+          {visible && (
+            <AnimatedImage
+              style={[
+                {
+                  position: "absolute",
+                  top: post.imageURL ? -220 : -100,
+                  alignSelf: "center",
+                  left: 80,
+                  zIndex: 3,
+                  height: 100,
+                  width: 100,
+                  transform: [
+                    {
+                      scale: currentValue,
+                    },
+                  ],
+                },
+              ]}
               source={require("../assets/neutral_clicked.png")}
-              style={{ height: 30, width: 30 }}
-            />
-          ) : (
-            <Image
-              source={require("../assets/neutral_unclicked.png")}
-              style={{ height: 30, width: 30 }}
             />
           )}
+          {neutral ? (
+            <>
+              <Image
+                source={require("../assets/neutral_clicked.png")}
+                style={{ height: 30, width: 30 }}
+              />
+            </>
+          ) : (
+            <>
+              <Image
+                source={require("../assets/neutral_unclicked.png")}
+                style={{ height: 30, width: 30 }}
+              />
+            </>
+          )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setLol(!lol)}>
+        <TouchableOpacity
+          onPress={handleLol}
+          style={{ flexDirection: "row", alignItems: "center" }}
+        >
+          {visible2 && (
+            <AnimatedImage
+              style={[
+                {
+                  position: "absolute",
+                  top: post.imageURL ? -220 : -100,
+                  alignSelf: "center",
+                  left: -30,
+                  zIndex: 3,
+                  height: 100,
+                  width: 100,
+                  transform: [
+                    {
+                      scale: currentValue,
+                    },
+                  ],
+                },
+              ]}
+              source={require("../assets/lol_clicked.png")}
+            />
+          )}
           {lol ? (
             <Image
               source={require("../assets/lol_clicked.png")}
@@ -254,7 +442,31 @@ const Post = ({ post }) => {
             />
           )}
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setRofl(!rofl)}>
+        <TouchableOpacity
+          onPress={handleRofl}
+          style={{ flexDirection: "row", alignItems: "center" }}
+        >
+          {visible3 && (
+            <AnimatedImage
+              style={[
+                {
+                  position: "absolute",
+                  top: post.imageURL ? -220 : -100,
+                  alignSelf: "center",
+                  left: -140,
+                  zIndex: 3,
+                  height: 100,
+                  width: 100,
+                  transform: [
+                    {
+                      scale: currentValue,
+                    },
+                  ],
+                },
+              ]}
+              source={require("../assets/rofl_clicked.png")}
+            />
+          )}
           {rofl ? (
             <Image
               source={require("../assets/rofl_clicked.png")}
@@ -268,6 +480,21 @@ const Post = ({ post }) => {
           )}
         </TouchableOpacity>
       </View>
+      {(neutral || lol || rofl) && (
+        <View
+          style={{
+            flexDirection: "row",
+
+            justifyContent: "space-around",
+            marginTop: 0,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ color: "orange" }}>({post.neutral.length})</Text>
+          <Text style={{ color: "orange" }}>({post.lol.length})</Text>
+          <Text style={{ color: "orange" }}>({post.rofl.length})</Text>
+        </View>
+      )}
     </View>
   );
 };

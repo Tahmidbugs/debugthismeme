@@ -136,6 +136,10 @@ const AppForm = ({ navigation, template }) => {
         username: currentLoggedInUser.username,
         topCaption: topCaption,
         bottomCaption: bottomCaption,
+        op_email: firebase.auth().currentUser.email,
+        neutral: [],
+        lol: [],
+        rofl: [],
       })
       .then(() => {
         console.log("Document successfully uploaded!");
